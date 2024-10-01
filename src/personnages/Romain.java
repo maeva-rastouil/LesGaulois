@@ -28,7 +28,9 @@ public class Romain {
 	public static void main(String[] args) {
 		//création de l'objet asterix de la classe Gaulois
 		Gaulois asterix = new Gaulois("Asterix", 8);
+		Gaulois obelix = new Gaulois("Obelix", 25);
 		Romain minus = new Romain("Minus", 6);
+		Druide panoramix = new Druide("Panoramix",5,10);
 		System.out.println(asterix);
 		
 		//vérification du fonctionement des méthodes
