@@ -1,4 +1,5 @@
 package personnages;
+import personnages.Gaulois;
 
 public class Village {
 	private String nom;
@@ -25,12 +26,27 @@ public class Village {
 	public Gaulois trouverHabitant(int num) {
 		return villageois[num];
 	}
-	public static void main(String[] args) {
-		Village village = new Village("Village Des Irréductibles", 30);
+	public void afficherVillageois() {
+		System.out.println("Dans le village du chef " + chef.getNom()  + " vivent les lÃ©gendaires gaulois :");
+		for(int i=0; i<nbVillageois; i++) {
+			System.out.println("-" + villageois[i].getNom());
+		}
 		
+	}
+	public static void main(String[] args) {
+		Village village = new Village("Village Des Irrï¿½ductibles", 30);
 		//L'instruction (" Gaulois gaulois = village.trouverHabitant(30); ") affiche l'erreur Index 30 out of bounds for length 30
 		Chef abraracourcix = new Chef("Abraracourcix", 6, village);
-		//Gaulois asterix = new Gaulois("Asterix", 8, village);
+		village.setChef(abraracourcix);
+		Gaulois asterix = new Gaulois("Asterix", 8);
+		Gaulois obelix = new Gaulois("Obelix", 25);
+		village.ajouterHabitant(asterix);
+		village.ajouterHabitant(obelix);
+		//Gaulois gaulois = village.trouverHabitant(1);      Cette instruction renvoie null ??
+		//System.out.println(gaulois);
+		village.afficherVillageois();
+		
+		
 	}
 }
 
