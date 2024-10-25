@@ -2,8 +2,10 @@ package personnages;
 
 public class Gaulois {
 	private String nom;
-	private int force;
 	private int effetPotion = 1;
+	private int force;
+	private int nbTrophees;
+	private Equipement[] trophees = new Equipement[100];
 	
 	public Gaulois (String nom, int force) {
 		this.nom = nom;
@@ -14,19 +16,25 @@ public class Gaulois {
 		return nom;
 	}
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "« " + texte + "»");
+		System.out.println(prendreParole() + "ï¿½ " + texte + "ï¿½");
 	}
 	private String prendreParole() {
 		return "Le gaulois " + nom + " : ";
 	}
-	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la mâchoire de "
-				+ romain.getNom());
-		romain.recevoirCoup((force / 3) * effetPotion);
+//	public void frapper(Romain romain) {
+//		System.out.println(nom + " envoie un grand coup dans la mï¿½choire de " + romain.getNom());
+//		romain.recevoirCoup((force / 3) * effetPotion);
+//	}
+	public void frapper(Romain romain){
+		System.out.println(nom + " envoie un grand coup dans la mÃ¢choire de " + romain.getNom());
+		Equipement[] recup = romain.recevoirCoup((force / 3) * effetPotion);
+		for (int i = 0; recup != null && i < recup.length; i++, nbTrophees++) {
+			this.trophees[nbTrophees] = recup[i];
+		}
 	}
 	public void boirePotion(int forcePotion){
 		this.effetPotion = forcePotion;
-		System.out.println("Merci Druide, je sens que ma force est " + forcePotion + " fois décuplée !");
+		System.out.println("Merci Druide, je sens que ma force est " + forcePotion + " fois dï¿½cuplï¿½e !");
 	}
 	@Override
 	public String toString() {
@@ -34,14 +42,12 @@ public class Gaulois {
 		+ effetPotion + "]";
 	}
 	public static void main(String[] args) {
-		//création de l'objet asterix de la classe Gaulois
+		//crï¿½ation de l'objet asterix de la classe Gaulois
 		Gaulois asterix = new Gaulois("Asterix", 8);
-		Gaulois obelix = new Gaulois("Obelix", 25);
 		Romain minus = new Romain("Minus", 6);
-		Druide panoramix = new Druide("Panoramix",5,10);
 		System.out.println(asterix);
 		
-		//vérification du fonctionement des méthodes
+		//vï¿½rification du fonctionement des mÃ©thodes
 		asterix.prendreParole();
 		asterix.parler("Bonjour");
 		asterix.frapper(minus);
